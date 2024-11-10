@@ -103,3 +103,13 @@ python main.py \
 ```
 
 Trained models will be saved as `<method>_<dataset>_<learning_rate>.pth` into the `Saved_Models` directory. `Early stopping` has been utilized, therefore if the models validation accuracy doesn't improve for consecutive 5 epochs training will be stopped.
+
+
+## Models Checkpoint
+
+You can use the already trained models checkpoint for evaluation. Run the following command to download all the checkpoints. You can find the models on `Model Checkpoint` folder.
+
+```
+bash download_checkpoint.sh
+```
+
