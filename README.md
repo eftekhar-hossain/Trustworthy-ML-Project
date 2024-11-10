@@ -11,21 +11,21 @@ Folders need to organize as follows in `Trustworthy-ML-Project`
 ```
 ├── Datasets
 |   ├── BHM
-        ├── Files --> excel files
-        └── Memes --> images
+        ├── Files 
+        └── Memes
     ├── MIMOSA
-        ├── Memes --> images
+        ├── Memes 
         └── .csv files  
     ├── download_dataset.sh 
 |   
 ├── Scripts
-   ├──  Slurm Scripts --> scripts to run the baselines in server
-   └── Baseline Results --> baseline results
-   └── Models Checkpoint --> baseline models checkpoint
+   ├──  Slurm Scripts --> only for server
+   └── Baseline Results 
+   └── Models Checkpoint 
    └── .py files
-├── Saved_Models  --> .pth files after training
-|
-└── requirements.txt           
+|   
+├── Saved_Models  --> 
+├── requirements.txt           
 ```
 
 # Instructions
