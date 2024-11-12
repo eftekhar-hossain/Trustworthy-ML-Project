@@ -15,4 +15,4 @@ tqdm
 gdown
 Madgrad
 openpyxl
-multilingual-clip torch
+multilingual-clip #torch
