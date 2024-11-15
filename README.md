@@ -21,10 +21,10 @@ Folders need to organize as follows in `Trustworthy-ML-Project`
 ├── Scripts
    ├──  Slurm Scripts --> only for server
    └── Baseline Results 
-   └── Models Checkpoint 
    └── .py files
 |   
-├── Saved_Models  --> 
+├── Saved_Models  -->
+└── Models Checkpoint 
 ├── requirements.txt           
 ```
 
