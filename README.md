@@ -46,7 +46,7 @@ Ensure the downloaded datasets followed the folder organazation.
 
 ## Models Training 
 
-We have reproduced the results of three multimodal models. 
+We have reproduced the results of three multimodal models. Two datasets were utilized here **Bengali Hateful Memes (BHM)** and **MultIMOdal AggreSsion DAtaset (MIMOSA)**. 
 
 - Dual Co-Attention Framework (DORA)
 - Multimodal Attentive Fusion (MAF)
@@ -58,6 +58,9 @@ Codes are available in `Scripts` folder.
 - `dora.py` implementation of **DORA** architecture
 - `maf.py` implementation of **MAF** architecture
 - `mclip.py` implementation of **mclip** architecture
+- `wb-attack.py` implementation of two white box attacks e.g., **PGD** and **FGSM**.
+- `transfer-attack.py` implementation of transfer attack using **FGSM** on only **ResNet** model.
+- `img-bb-attack.py` implementation of various image black box attack e.g., **Gaussian**, **Salt-Pepper**, **News-Print**, and **Random** noise.
 
 Example:
 
@@ -78,7 +81,7 @@ python main.py \
 **Arguments**
 
 - `--dataset`: Specifies the dataset to use (`mimosa` or `bhm`).
-- `--method dora`: Chooses the method (`dora`,`maf`, or `mclip`).
+- `--method`: Specifies the method (`dora`,`maf`, or `mclip`).
 - `--max_len`: Sets the maximum sequence length (`default: 50`). 
 - `--heads`: Sets the number of attention heads.
 - `--epochs`: Specifies the number of training epochs. (`default: 50`)
@@ -113,3 +116,65 @@ You can use the already trained models checkpoint for evaluation. Run the follow
 bash download_checkpoint.sh
 ```
 
+## Threat Models
+
+To perform **Black Box** attack on `DORA` model using `MIMOSA` dataset. If you are not in the `Scripts` folder.
+
+```
+cd Scripts
+
+python img-bb-attack.py \
+  --dataset mimosa \
+  --method dora \
+  --noise all
+```
+
+**Arguments**
+
+- `--dataset`: Specifies the dataset to use (`mimosa` or `bhm`).
+- `--method`: Specifies the method (`dora`,`maf`, or `mclip`).
+- `--noise`: Specifies the noise (`guassian`,`salt-peper`,`newsprint` ,`random`, or `all`); <u>default:</u> `guassian`.
+
+You will get results for individual attack with variying values of their parameter. For example: for `salt-peper` noise you will get results for `salt` and `peper` values ranging from `[0.01,0.03,0.05]`.
+
+---
+
+To perform **White Box** attack on `MAF` model using `BHM` dataset. If you are not in the `Scripts` folder.
+
+```
+cd Scripts
+
+python wb-attack.py \ 
+  --dataset bhm \ 
+  --method maf \ 
+  --attack all
+  --epsilon 0.03
+  --alpha 0.005
+  --steps 40
+```
+**Arguments**
+
+- `--dataset`: Specifies the dataset to use (`mimosa` or `bhm`).
+- `--method`: Specifies the method (`dora`,`maf`, or `mclip`).
+- `--attack`: Specifies the attack name (`pgd`,`fgsm`, or `all`);  <u>default:</u> `pgd`.
+- `--epsilon`: Amount of perturbation; <u>default:</u> `0.0015`.
+- `--alpha`: Step size; <u>default:</u> `0.0005`.
+- `--steps`: Number of steps; <u>default:</u> `30`.
+
+---
+
+To perform **Transfer Attack (FGSM)** on `MCLIP` model using `MIMOSA` dataset. If you are not in the `Scripts` folder.
+
+```
+cd Scripts
+
+python transfer-attack.py \
+   --dataset mimosa \
+   --method mclip \ 
+   --epsilon 0.03 
+```
+**Arguments**
+
+- `--dataset`: Specifies the dataset to use (`mimosa` or `bhm`).
+- `--method`: Specifies the method (`dora`,`maf`, or `mclip`).
+- `--epsilon`: Amount of perturbation; <u>default:</u> `0.015`.
