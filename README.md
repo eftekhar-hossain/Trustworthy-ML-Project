@@ -139,11 +139,9 @@ You will get results for individual attack with variying values of their paramet
 
 ---
 
-To perform **White Box** attack on `MAF` model using `BHM` dataset. If you are not in the `Scripts` folder.
+To perform **White Box** attack on `MAF` model using `BHM` dataset.
 
 ```
-cd Scripts
-
 python wb-attack.py \ 
   --dataset bhm \ 
   --method maf \ 
@@ -163,11 +161,9 @@ python wb-attack.py \
 
 ---
 
-To perform **Transfer Attack (FGSM)** on `MCLIP` model using `MIMOSA` dataset. If you are not in the `Scripts` folder.
+To perform **Transfer Attack (FGSM)** on `MCLIP` model using `MIMOSA` dataset.
 
 ```
-cd Scripts
-
 python transfer-attack.py \
    --dataset mimosa \
    --method mclip \ 
