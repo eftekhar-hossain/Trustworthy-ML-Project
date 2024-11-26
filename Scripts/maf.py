@@ -271,3 +271,16 @@ def predict(model_path,test_loader, heads):
   print('Evaluation Done.')
   print("--------------------------------")
   print(classification_report(test_labels, test_preds, digits = 3))
+
+
+def load_model(model_path, heads):
+  # Create an instance of the model
+  num_classes = 1  # Number of output classes
+  num_heads = heads  # Number of attention heads for multihead attention
+  model = MAF(clip_model, num_classes, num_heads)
+  model = model.to(device)  
+  model.load_state_dict(torch.load(os.path.join(model_dir, model_path)))
+  model.eval()
+
+  return model
+ 

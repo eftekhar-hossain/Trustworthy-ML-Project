@@ -39,18 +39,7 @@ model_dir = os.path.join(root_dir,'Saved_Models')
 clip_imodel, preprocess = clip.load("ViT-B/32", device=device)
 tokenizer = AutoTokenizer.from_pretrained('M-CLIP/XLM-Roberta-Large-Vit-L-14')
 clip_text = pt_multilingual_clip.MultilingualCLIP.from_pretrained('M-CLIP/XLM-Roberta-Large-Vit-L-14')  
-      
 
-    # # for batch in train_loader:
-    # #     image = batch['image']
-    # #     text = batch['text']
-    # #     label = batch['label']
-
-    # #     print(image.shape)
-    # #     #print(text.shape)
-    # #     print(label.shape)
-
-    # #     break
 
     # Freeze the parameters of the CLIP model
 for param in clip_imodel.parameters():
@@ -91,17 +80,7 @@ model = CLIPClassifier(device=device)
 model  = model.to(device)    
 
 
-    # for batch in train_loader:
-    #     image = batch['image'].to(device)
-    #     text = batch['text']
-    #     text_embed = clip_text.forward(text, tokenizer).to(device)
-    #     # label = batch['label'].to(device)
-    #     with torch.no_grad():
-
-    #         features = model(image,text_embed)
-
-
-    # Define a function to calculate accuracy
+# Define a function to calculate accuracy
 def calculate_accuracy(predictions, targets):
     # For multi-class classification, you can use torch.argmax to get the predicted class
     predictions = torch.argmax(predictions, dim=1)
@@ -242,3 +221,13 @@ def predict(model_path,test_loader):
     print('Evaluation Done.')
     print("--------------------------------")
     print(classification_report(test_labels,test_preds,digits=3))
+
+
+def load_model(model_path):
+  # Create an instance of the model
+  model = CLIPClassifier(device=device)
+  model  = model.to(device)     
+  model.load_state_dict(torch.load(os.path.join(model_dir, model_path)))
+  model.eval()
+
+  return model
