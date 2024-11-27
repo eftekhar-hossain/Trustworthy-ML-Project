@@ -16,3 +16,4 @@ gdown
 Madgrad
 openpyxl
 multilingual-clip torch
+translate
