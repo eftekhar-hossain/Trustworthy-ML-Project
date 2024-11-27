@@ -174,3 +174,21 @@ python transfer-attack.py \
 - `--dataset`: Specifies the dataset to use (`mimosa` or `bhm`).
 - `--method`: Specifies the method (`dora`,`maf`, or `mclip`).
 - `--epsilon`: Amount of perturbation; <u>default:</u> `0.015`.
+
+---
+
+To perform **Black Box Text Attack (Add Random Emoji)** on `DORA` model using `BHM` dataset.
+
+```
+python text-attack.py \
+   --dataset BHM \
+   --method dora \
+   --text_attack emoji \
+   --frequency 2
+```
+**Arguments**
+
+- `--dataset`: Specifies the dataset to use (`mimosa` or `bhm`).
+- `--method`: Specifies the method (`dora`,`maf`, or `mclip`).
+- `--text_attack`: Specifies the type of text attack (`emoji`,`positive_token`,`typo`,`translate` or `all`).
+- `--frequency`: Number of tokens to insert/add; <u>default:</u> `1`.
