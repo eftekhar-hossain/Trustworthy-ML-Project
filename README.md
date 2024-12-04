@@ -1,14 +1,17 @@
 # (CAP 6938 Course Project)
 # Investigating Adversarial Robustness of Hateful Meme Detection Systems 
 
-# Table of Contents
 
- - [Baseline Model Implementation](#models-training)
- - [Models Checkpoint](#models-checkpoint)
- - [Black Box Attack on Images](#black-box-attack-on-images)
- - [White Box Attack on Images](#white-box-attack-on-images)
+## Table of Contents
+  1. [Instructions](#instructions)
+  2. [Models Training](#models-training)
+  3. [Models Checkpoint](#models-checkpoint)
+  4. [Threat Models](#threat-models)
+     - [Black Box Attack on Images](#black-box-attack-on-images)
+     - [White Box Attack on Images](#white-box-attack-on-images)
+     - [Transfer Attack on Images](#transfer-attack-on-images)
+     - [Black Box Attack on Texts](#black-box-attack-on-texts)
 
-To run the scripts, you need to  install `Python=3.10.x`. All the models are implemented using `Pytorch=2.4.0`. 
 
 ## Folder Organization
 
@@ -35,7 +38,7 @@ Folders need to be organized as follows in `Trustworthy-ML-Project`
 ```
 
 # Instructions
-
+- To run the scripts, you need to  install `Python=3.10.x`. All the models are implemented using `Pytorch=2.4.0`. 
 - If you use any IDE, first clone (`git clone <url>`) the repository. Then, create a virtual environment and activate it.
 
     `conda create -n Trustworthy-ML-Project Python=3.10.12`<br>
@@ -50,7 +53,7 @@ Folders need to be organized as follows in `Trustworthy-ML-Project`
 `cd ..` --> back to root directory<br>
 Ensure the downloaded datasets follow the folder organization.
 
-## Models Training 
+# Models Training 
 
 We have reproduced the results of three multimodal models. Two datasets were utilized here **Bengali Hateful Memes (BHM)** and **MultIMOdal AggreSsion DAtaset (MIMOSA)**. 
 
@@ -114,7 +117,6 @@ python main.py \
 
 Trained models will be saved as `<method>_<dataset>_<learning_rate>.pth` into the `Saved_Models` directory. `Early stopping` has been utilized, therefore if the models validation accuracy doesn't improve for consecutive 5 epochs training will be stopped.
 
-
 ## Models Checkpoint
 
 You can use the checkpoints of the already trained models for evaluation. Run the following command to download all the checkpoints. You can find the models on `Model Checkpoint` folder.
@@ -122,10 +124,10 @@ You can use the checkpoints of the already trained models for evaluation. Run th
 ```
 bash download_checkpoint.sh
 ```
+---
+# Threat Models
 
-## Threat Models
-
-### Black Box Attack on Images
+## Black Box Attack on Images
 
 To perform **Black Box** attack on `DORA` model using `MIMOSA` dataset. If you are not in the `Scripts` folder.
 
@@ -147,7 +149,7 @@ python img-bb-attack.py \
 You will get results for individual attack with variying values of their parameter. For example: for `salt-peper` noise you will get results for `salt` and `peper` values ranging from `[0.01,0.03,0.05]`.
 
 ---
-### White Box Attack on Images
+## White Box Attack on Images
 
 To perform **White Box** attack on `MAF` model using `BHM` dataset.
 
@@ -170,6 +172,7 @@ python wb-attack.py \
 - `--steps`: Number of steps; <u>default:</u> `30`.
 
 ---
+## Transfer Attack on Images
 
 To perform **Transfer Attack (FGSM)** on `MCLIP` model using `MIMOSA` dataset.
 
@@ -186,6 +189,7 @@ python transfer-attack.py \
 - `--epsilon`: Amount of perturbation; <u>default:</u> `0.015`.
 
 ---
+## Black Box Attack on Texts
 
 To perform **Black Box Text Attack (Add Random Emoji)** on `DORA` model using `BHM` dataset.
 
