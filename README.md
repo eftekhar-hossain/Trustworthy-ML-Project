@@ -1,12 +1,18 @@
 # (CAP 6938 Course Project)
 # Investigating Adversarial Robustness of Hateful Meme Detection Systems 
 
+# Table of Contents
 
-To run the scripts you need to  install `Python=3.10.x`. All the models are implemented using `Pytorch=2.4.0`. 
+ - [Baseline Model Implementation](#models-training)
+ - [Models Checkpoint](#models-checkpoint)
+ - [Black Box Attack on Images](#black-box-attack-on-images)
+ - [White Box Attack on Images](#white-box-attack-on-images)
 
-### Folder Organization
+To run the scripts, you need to  install `Python=3.10.x`. All the models are implemented using `Pytorch=2.4.0`. 
 
-Folders need to organize as follows in `Trustworthy-ML-Project`
+## Folder Organization
+
+Folders need to be organized as follows in `Trustworthy-ML-Project`
 
 ```
 ├── Datasets
@@ -30,7 +36,7 @@ Folders need to organize as follows in `Trustworthy-ML-Project`
 
 # Instructions
 
-- If your are using any IDE then first clone (`git clone <url>`) the repository. Then create a virtual environment and activate it.
+- If you use any IDE, first clone (`git clone <url>`) the repository. Then, create a virtual environment and activate it.
 
     `conda create -n Trustworthy-ML-Project Python=3.10.12`<br>
     `conda activate Trustworthy-ML-Project`
@@ -42,7 +48,7 @@ Folders need to organize as follows in `Trustworthy-ML-Project`
 `cd Datasets` <br>
 `bash download_dataset.sh`<br>
 `cd ..` --> back to root directory<br>
-Ensure the downloaded datasets followed the folder organazation.
+Ensure the downloaded datasets follow the folder organization.
 
 ## Models Training 
 
@@ -52,7 +58,7 @@ We have reproduced the results of three multimodal models. Two datasets were uti
 - Multimodal Attentive Fusion (MAF)
 - Multilingual CLIP (m-clip)
 
-Codes are available in `Scripts` folder. 
+Codes are available in the `Scripts` folder. 
 
 - `dataset.py` contains the `Dataloader` for the **BHM** and **MIMOSA** dataset.
 - `dora.py` implementation of **DORA** architecture
@@ -61,6 +67,7 @@ Codes are available in `Scripts` folder.
 - `wb-attack.py` implementation of two white box attacks e.g., **PGD** and **FGSM**.
 - `transfer-attack.py` implementation of transfer attack using **FGSM** on only **ResNet** model.
 - `img-bb-attack.py` implementation of various image black box attack e.g., **Gaussian**, **Salt-Pepper**, **News-Print**, and **Random** noise.
+- `text-attack.py` implementation of various text black box attack e.g., **Postive Token**, **Emoji**, **Typos**, and **Cross-Lingual Counterpart** noise.
 
 Example:
 
@@ -110,13 +117,15 @@ Trained models will be saved as `<method>_<dataset>_<learning_rate>.pth` into th
 
 ## Models Checkpoint
 
-You can use the already trained models checkpoint for evaluation. Run the following command to download all the checkpoints. You can find the models on `Model Checkpoint` folder.
+You can use the checkpoints of the already trained models for evaluation. Run the following command to download all the checkpoints. You can find the models on `Model Checkpoint` folder.
 
 ```
 bash download_checkpoint.sh
 ```
 
 ## Threat Models
+
+### Black Box Attack on Images
 
 To perform **Black Box** attack on `DORA` model using `MIMOSA` dataset. If you are not in the `Scripts` folder.
 
@@ -138,6 +147,7 @@ python img-bb-attack.py \
 You will get results for individual attack with variying values of their parameter. For example: for `salt-peper` noise you will get results for `salt` and `peper` values ranging from `[0.01,0.03,0.05]`.
 
 ---
+### White Box Attack on Images
 
 To perform **White Box** attack on `MAF` model using `BHM` dataset.
 
