@@ -146,20 +146,20 @@ python img-bb-attack.py \
 - `--method`: Specifies the method (`dora`,`maf`, or `mclip`).
 - `--noise`: Specifies the noise (`guassian`,`salt-peper`,`newsprint` ,`random`, or `all`); <u>default:</u> `guassian`.
 
-You will get results for individual attack with variying values of their parameter. For example: for `salt-peper` noise you will get results for `salt` and `peper` values ranging from `[0.01,0.03,0.05]`.
+You will get results for individual attacks with varying values of their parameters. For example, for `salt-peper` noise, you will get results for `salt` and `pepper` values ranging from `[0.01,0.03,0.05]`.
 
 ---
 ## White Box Attack on Images
 
-To perform **White Box** attack on `MAF` model using `BHM` dataset.
+To perform a **White Box** attack on the `MAF` model using the `BHM` dataset.
 
 ```
 python wb-attack.py \ 
   --dataset bhm \ 
   --method maf \ 
-  --attack all
-  --epsilon 0.03
-  --alpha 0.005
+  --attack all \
+  --epsilon 0.03 \
+  --alpha 0.005 \
   --steps 40
 ```
 **Arguments**
@@ -174,7 +174,7 @@ python wb-attack.py \
 ---
 ## Transfer Attack on Images
 
-To perform **Transfer Attack (FGSM)** on `MCLIP` model using `MIMOSA` dataset.
+To perform **Transfer Attack (FGSM)** on the `MCLIP` model using the `MIMOSA` dataset.
 
 ```
 python transfer-attack.py \
@@ -191,7 +191,7 @@ python transfer-attack.py \
 ---
 ## Black Box Attack on Texts
 
-To perform **Black Box Text Attack (Add Random Emoji)** on `DORA` model using `BHM` dataset.
+To perform **Black Box Text Attack (Add Random Emoji)** on the `DORA` model using the `BHM` dataset.
 
 ```
 python text-attack.py \
